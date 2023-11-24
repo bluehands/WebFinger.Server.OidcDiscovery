@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <VersionPrefix>1.0.0</VersionPrefix>
+        <Title>WebFinger OpenID Connect Discovery 1.0</Title>
+        <Description>An implementation of OpenID Connect Discovery 1.0 for ASP.NET Core</Description>
+        <PackageTags>oidc discovery webfinger</PackageTags>
+        <PackageProjectUrl>https://github.com/bluehands/WebFinger.Server.OidcDiscovery</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <!-- Source link requires git via https -->
+        <RepositoryUrl>https://github.com/bluehands/WebFinger.Server.OidcDiscovery.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="DarkLink.Web.WebFinger.Server" Version="1.0.0" />
+    </ItemGroup>
+
+    <!-- Begin source link config. See: https://devblogs.microsoft.com/dotnet/producing-packages-with-source-link -->
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    </ItemGroup>
+    <!-- End source link specific -->
+</Project>
