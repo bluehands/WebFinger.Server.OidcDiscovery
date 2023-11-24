@@ -16,10 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 6.0.x
-          source-url: https://api.nuget.org/v3/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}  
+          dotnet-version: 6.0.x 
       - name: Restore dependencies
         run: dotnet restore
         working-directory: ${{ env.wd }}
@@ -30,6 +27,6 @@ jobs:
         run: dotnet pack --configuration Release
         working-directory: ${{ env.wd }}
       - name: Publish the package to nuget.org
-        run: dotnet nuget push **/bin/Release/*.nupkg
-        working-directory: ${{ env.wd }}
-
+        run: dotnet nuget push */bin/Release/*.nupkg -k $NUGET_AUTH_TOKEN -s https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
