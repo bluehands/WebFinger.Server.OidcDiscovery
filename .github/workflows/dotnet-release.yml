@@ -1,13 +1,8 @@
 name: .NET release
 
-# on:
-#   release:
-#     types: [created]
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  release:
+    types: [created]
    
 jobs:
   build:
@@ -18,8 +13,23 @@ jobs:
     env:
       wd: ./src/WebFinger.Server.OidcDiscovery
     steps:
-      - name: Test Run
-        run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 6.0.x
+          source-url: https://api.nuget.org/v3/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}  
+      - name: Restore dependencies
+        run: dotnet restore
         working-directory: ${{ env.wd }}
-    
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+        working-directory: ${{ env.wd }}
+      - name: Create the package
+        run: dotnet pack --configuration Release
+        working-directory: ${{ env.wd }}
+      - name: Publish the package to nuget.org
+        run: dotnet nuget push **/bin/Release/*.nupkg
+        working-directory: ${{ env.wd }}
 
