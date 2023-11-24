@@ -1,8 +1,5 @@
-[OpenID Connect Discovery 1.0]:(https://openid.net/specs/openid-connect-discovery-1_0.html)
-[ASP.NET Core]:(https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-8.0)
-
 # WebFinger.Server.OidcDiscovery
-An implementation of [OpenID Connect Discovery 1.0] for [ASP.NET Core]
+An implementation of [OpenID Connect Discovery 1.0](https://openid.net/specs/openid-connect-discovery-1_0.html) for [ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-8.0)
 
 ## Table of Contents
 
