@@ -1,0 +1,25 @@
+name: .NET release
+
+# on:
+#   release:
+#     types: [created]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+   
+jobs:
+  build:
+    uses: bluehands/WebFinger.Server.OidcDiscovery/.github/workflows/dotnet.yml@develop
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    env:
+      wd: ./src/WebFinger.Server.OidcDiscovery
+    steps:
+      - name: Test Run
+        run: dotnet test --no-build --verbosity normal
+        working-directory: ${{ env.wd }}
+    
+
