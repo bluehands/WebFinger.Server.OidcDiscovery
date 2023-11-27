@@ -13,6 +13,7 @@
         <!-- Source link requires git via https -->
         <RepositoryUrl>https://github.com/bluehands/WebFinger.Server.OidcDiscovery.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <RepositoryBranch>main</RepositoryBranch>
     </PropertyGroup>
     
     <ItemGroup>
