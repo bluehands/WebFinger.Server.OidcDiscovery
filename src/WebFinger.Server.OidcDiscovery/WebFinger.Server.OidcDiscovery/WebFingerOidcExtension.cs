@@ -16,6 +16,14 @@ public static class WebFingerOidcExtension
         return services;
     }
 
+    // ReSharper disable once UnusedMember.Global
+    public static IServiceCollection AddOidcWebFinger(this IServiceCollection services,
+        Func<IServiceProvider, OidcIssuer> createIssuer)
+    {
+        services.AddWebFinger(sp => new OidcResourceDescriptorProvider(createIssuer(sp)));
+        return services;
+    }
+
     private class OidcResourceDescriptorProvider : IResourceDescriptorProvider
     {
         private readonly OidcIssuer issuer;
